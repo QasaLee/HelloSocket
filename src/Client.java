@@ -35,20 +35,28 @@ public class Client {
         while (!line.equals("over")) {
             try {
                 line = input.readLine();
+// Modify this to get up to speed with the deprecated readLine() method:
+//        DataInputStream in = new DataInputStream(System.in);
+// Change "DataInputStream d = new DataInputStream(in);" into:
+//        BufferedReader d
+//                = new BufferedReader(new InputStreamReader(in));
+                output.writeUTF(line);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-
-//        // Modify this to get up to speed with the deprecated readLine() method:
-//        DataInputStream in = new DataInputStream(System.in);
-//        // Change "DataInputStream d = new DataInputStream(in);" into:
-//        BufferedReader d
-//                = new BufferedReader(new InputStreamReader(in));
-
-
-
+        // Close the connection
+        try {
+            input.close();
+            output.close();
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    public static void main(String[] args) {
+        Client client = new Client("127.0.0.1", 5000);
+    }
 }
