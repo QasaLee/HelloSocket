@@ -1,7 +1,6 @@
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 public class Client {
     // initialize socket and input output streams
@@ -23,9 +22,31 @@ public class Client {
             // Sends output to the socket
             output = new DataOutputStream(socket.getOutputStream());
 
+        } catch (UnknownHostException unknownHoseException) {
+            System.out.println(unknownHoseException);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // String to read message from input
+        String line = "";
+
+        // Keep reading until "Over" is input
+        while (!line.equals("over")) {
+            try {
+                line = input.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+//        // Modify this to get up to speed with the deprecated readLine() method:
+//        DataInputStream in = new DataInputStream(System.in);
+//        // Change "DataInputStream d = new DataInputStream(in);" into:
+//        BufferedReader d
+//                = new BufferedReader(new InputStreamReader(in));
+
 
 
     }
