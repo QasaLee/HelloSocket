@@ -3,6 +3,9 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class Client {
+
+    // MARK: - Field:
+
     // initialize socket and input output streams
     private Socket socket = null;
     private DataInputStream input = null;
@@ -10,11 +13,10 @@ public class Client {
 
     // constructor to put ip address and port
     public Client(String ipAddress, int port) {
-
         // Establish a connection
         try {
             socket = new Socket(ipAddress, port);
-            System.out.println("Connected!");
+            System.out.println("Client Side Connection Started!");
 
             // Takes input from terminal input
             input = new DataInputStream(System.in);
@@ -34,7 +36,7 @@ public class Client {
         // Keep reading until "Over" is input
         while (!line.equals("over")) {
             try {
-                line = input.readLine();
+                line = input.readUTF();
 // Modify this to get up to speed with the deprecated readLine() method:
 //        DataInputStream in = new DataInputStream(System.in);
 // Change "DataInputStream d = new DataInputStream(in);" into:
