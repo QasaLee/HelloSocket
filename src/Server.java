@@ -29,8 +29,20 @@ public class Server {
 
             // Reads message from client until "over" is sent
             while (!line.equals("over")) {
-                line = inputStream.readUTF();
+                try {
+                    line = inputStream.readUTF();
+                    System.out.println(line);
+                } catch (IOException e) {
+                    System.out.println(e);
+                }
             }
+
+            // Close the connection
+            System.out.println("Closing the connection: ...");
+            socket.close();
+            inputStream.close();
+            serverSocket.close(); // Attention: It should've not existed!
+
 
         } catch (IOException e) {
             e.printStackTrace();
