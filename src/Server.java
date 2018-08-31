@@ -43,10 +43,12 @@ public class Server {
             inputStream.close();
             serverSocket.close(); // Attention: It should've not existed!
 
-
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public static void main(String[] args) {
+        Server server = new Server(5000);
     }
 }
