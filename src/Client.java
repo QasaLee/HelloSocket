@@ -33,15 +33,13 @@ public class Client {
         // String to read message from input
         String line = "";
 
+
         // Keep reading until "Over" is input
         while (!line.equals("over")) {
             try {
-                line = input.readUTF();
-// Modify this to get up to speed with the deprecated readLine() method:
-//        DataInputStream in = new DataInputStream(System.in);
-// Change "DataInputStream d = new DataInputStream(in);" into:
-//        BufferedReader d
-//                = new BufferedReader(new InputStreamReader(in));
+                BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+                line = reader.readLine();
+
                 output.writeUTF(line);
             } catch (IOException e) {
                 e.printStackTrace();

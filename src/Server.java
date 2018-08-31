@@ -19,11 +19,11 @@ public class Server {
             System.out.println("Server side connection STARTED!");
             System.out.println("Waiting for a client ...");
 
-            socket = serverSocket.accept(); // Attention: pay attention.
+            socket = serverSocket.accept(); // Attention: The accept() method blocks(just sits there) until a client connects to the server.
             System.out.println("Client accepted");
 
             // Takes input from the client socket
-            inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+            inputStream = new DataInputStream(new BufferedInputStream(socket.getInputStream())); // Attention: Then we take input from the socket using getInputStream() method. Our Server keeps receiving messages until the Client sends “Over”.
 
             String line = "";
 
@@ -41,7 +41,7 @@ public class Server {
             System.out.println("Closing the connection: ...");
             socket.close();
             inputStream.close();
-            serverSocket.close(); // Attention: It should've not existed!
+            serverSocket.close(); // Attention: It should've not existed! Ask teacher for details.
 
         } catch (IOException e) {
             e.printStackTrace();
